@@ -53,13 +53,13 @@ module.exports = {
 
 	// turn these warnings to error for building
 	rules: {
-		'semi': ['warn', 'never'],
-		'comma-dangle': ['warn', 'always-multiline'],
-		'quote-props': ['warn', 'consistent'],
+		'semi': ['error', 'never'],
+		'comma-dangle': ['error', 'always-multiline'],
+		'quote-props': ['error', 'consistent'],
 		'indent': ['error', 'tab'],
 		'no-underscore-dangle': 0,
-		'no-unused-vars': 'warn',
-		'no-console': 'warn',
+		'no-unused-vars': 'error',
+		'no-console': 'error',
 
 		// react specifics
 		'react/jsx-indent': ['error', 'tab'],

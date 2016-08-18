@@ -1,35 +1,36 @@
-var path = require('path');
-var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var url = require('url');
-var paths = require('./paths');
+var path = require('path')
+var autoprefixer = require('autoprefixer')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var url = require('url')
+const precss = require('precss')
+var paths = require('./paths')
 
-var homepagePath = require(paths.appPackageJson).homepage;
-var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
+var homepagePath = require(paths.appPackageJson).homepage
+var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/'
 if (!publicPath.endsWith('/')) {
   // Prevents incorrect paths in file-loader
-  publicPath += '/';
+	publicPath += '/'
 }
 
 module.exports = {
-  bail: true,
-  devtool: 'source-map',
-  entry: [
-    require.resolve('./polyfills'),
-    path.join(paths.appSrc, 'index')
-  ],
-  output: {
-    path: paths.appBuild,
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-    publicPath: publicPath
-  },
-  resolve: {
+	bail: true,
+	// devtool: 'source-map',
+	entry: [
+		require.resolve('./polyfills'),
+		path.join(paths.appSrc, 'index'),
+	],
+	output: {
+		path: paths.appBuild,
+		filename: 'static/js/[name].[chunkhash:8].js',
+		chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+		publicPath: publicPath,
+	},
+	resolve: {
 		root: paths.appSrc,
-    extensions: ['', '.js', '.json'],
-    alias: {
+		extensions: ['', '.js', '.json'],
+		alias: {
       // This `alias` section can be safely removed after ejection.
       // We do this because `babel-runtime` may be inside `react-scripts`,
       // so when `babel-plugin-transform-runtime` imports it, it will not be
@@ -92,14 +93,15 @@ module.exports = {
       }
     ]
   },
-  eslint: {
+	eslint: {
     // TODO: consider separate config for production,
     // e.g. to enable no-console and no-debugger only in prod.
-    configFile: path.join(__dirname, 'eslint.js'),
-    useEslintrc: false
+		configFile: path.join(__dirname, 'eslint.production.js'),
+		failOnError: true,
+		useEslintrc: false,
   },
   postcss: function() {
-    return [autoprefixer];
+    return [precss, autoprefixer]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -137,4 +139,4 @@ module.exports = {
     }),
     new ExtractTextPlugin('static/css/[name].[contenthash:8].css')
   ]
-};
+}

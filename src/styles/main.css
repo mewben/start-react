@@ -1,0 +1,4 @@
+$bg-color: #dc2f4d;
+body {
+	background-color: $bg-color;
+}
