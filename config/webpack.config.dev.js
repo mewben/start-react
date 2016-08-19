@@ -4,6 +4,7 @@ var autoprefixer = require('autoprefixer')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+var DashboardPlugin = require('webpack-dashboard/plugin')
 var paths = require('./paths')
 
 module.exports = {
@@ -92,6 +93,7 @@ module.exports = {
 		return [precss, autoprefixer]
 	},
 	plugins: [
+		new DashboardPlugin(),
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: paths.appHtml,

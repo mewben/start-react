@@ -20,7 +20,9 @@ class Login extends Component {
 
 		return (
 			<div className="login">
-				<h1>Login</h1>
+				<h1>Welcome...</h1>
+				<hr />
+				<h3>User Login</h3>
 				{ !!__loginError && <p className="text-danger italic">{__loginError}</p> }
 				<FormLogin onSubmit={this._onSubmit} />
 			</div>

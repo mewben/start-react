@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var execSync = require('child_process').execSync;
 var opn = require('opn');
+var DashboardPlugin = require('webpack-dashboard/plugin');
 var detect = require('./utils/detectPort');
 var prompt = require('./utils/prompt');
 var config = require('../config/webpack.config.dev');
@@ -62,6 +63,7 @@ function clearConsole() {
 
 function setupCompiler(port) {
   compiler = webpack(config, handleCompile);
+	compiler.apply(new DashboardPlugin());
 
   compiler.plugin('invalid', function() {
     clearConsole();
