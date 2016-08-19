@@ -58,7 +58,8 @@ function formatMessage(message) {
 }
 
 function clearConsole() {
-  process.stdout.write('\x1bc');
+	// uncomment if not using webpack-dashboard
+  // process.stdout.write('\x1bc');
 }
 
 function setupCompiler(port) {

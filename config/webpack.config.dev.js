@@ -1,5 +1,4 @@
 var path = require('path')
-var precss = require('precss')
 var autoprefixer = require('autoprefixer')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -59,7 +58,7 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: [paths.appSrc, paths.appNodeModules],
-				loader: 'style!css!postcss',
+				loader: 'style!css!postcss!sass',
 			},
 			{
 				test: /\.json$/,
@@ -90,7 +89,7 @@ module.exports = {
 		useEslintrc: false,
 	},
 	postcss: function() {
-		return [precss, autoprefixer]
+		return [autoprefixer]
 	},
 	plugins: [
 		new DashboardPlugin(),

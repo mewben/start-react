@@ -4,7 +4,6 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var url = require('url')
-const precss = require('precss')
 var paths = require('./paths')
 
 var homepagePath = require(paths.appPackageJson).homepage
@@ -67,7 +66,7 @@ module.exports = {
         // Disable autoprefixer in css-loader itself:
         // https://github.com/webpack/css-loader/issues/281
         // We already have it thanks to postcss.
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss!sass')
       },
       {
         test: /\.json$/,
@@ -101,7 +100,7 @@ module.exports = {
 		useEslintrc: false,
   },
   postcss: function() {
-    return [precss, autoprefixer]
+    return [autoprefixer]
   },
   plugins: [
     new HtmlWebpackPlugin({
