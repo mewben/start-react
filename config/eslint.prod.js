@@ -47,11 +47,11 @@ module.exports = {
   },
 
 	rules: {
-		'semi': ['warn', 'never'],
-		'comma-dangle': ['warn', 'always-multiline'],
-		'quote-props': ['warn', 'consistent'],
+		'semi': ['error', 'never'],
+		'comma-dangle': ['error', 'always-multiline'],
+		'quote-props': ['error', 'consistent'],
 		'indent': ['error', 'tab'],
-		'no-console': 'warn',
+		'no-console': 'error',
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
     'default-case': ['warn', { commentPattern: '^no default$' }],
@@ -125,7 +125,7 @@ module.exports = {
     'no-unreachable': 'warn',
     'no-unused-expressions': 'warn',
     'no-unused-labels': 'warn',
-    'no-unused-vars': ['warn', { vars: 'local', args: 'none' }],
+    'no-unused-vars': ['error', { vars: 'local', args: 'none' }],
     'no-use-before-define': ['warn', 'nofunc'],
     'no-useless-computed-key': 'warn',
     'no-useless-concat': 'warn',
